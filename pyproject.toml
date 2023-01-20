@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "hw-27-new"
+version = "0.1.0"
+description = ""
+authors = ["Oskar Agzigitov <110802094+AgzigitovOskar@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "hw_27_new"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
