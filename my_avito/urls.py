@@ -13,20 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-
-from ads.views import *
+from ads.views.cat import root
+from my_avito import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', root),
-
-    path('cat/', CategoryListCreateView.as_view()),
-    path('cat/<int:pk>/', CategoryDetailView.as_view()),
-
-    path('ad/', AdListCreateView.as_view()),
-    path('ad/<int:pk>/', AdDetailView.as_view()),
-
+    path('cat/', include("ads.urls.cat")),
+    path('ad/', include("ads.urls.ad")),
+    path('user/', include("users.urls")),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
