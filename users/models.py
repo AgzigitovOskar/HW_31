@@ -22,6 +22,9 @@ class UserRoles(models.TextChoices):
     ADMIN = "admin", _("admin")
 
 
+STAFF_ROLES = [UserRoles.MEMBER, UserRoles.MODERATOR, UserRoles.ADMIN]
+
+
 class User(AbstractUser):
     role = models.CharField(choices=UserRoles.choices, default=UserRoles.MEMBER, max_length=9)
     age = models.PositiveSmallIntegerField(null=True)

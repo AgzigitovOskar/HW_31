@@ -6,6 +6,7 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
+from ads.permissions import IsAdAuthorOrStaff
 from ads.serializers import *
 
 
@@ -22,7 +23,11 @@ class AdViewSet(ModelViewSet):
     }
 
     default_permission = [AllowAny()]
-    permissions_list = {"retrieve": [IsAuthenticated()]}
+    permissions_list = {"retrieve": [IsAuthenticated()],
+                        "update": [IsAuthenticated(), IsAdAuthorOrStaff()],
+                        "partial_update": [IsAuthenticated(), IsAdAuthorOrStaff()],
+                        "destroy": [IsAuthenticated(), IsAdAuthorOrStaff()]
+                        }
 
     pagination_class = AdPagination
 
