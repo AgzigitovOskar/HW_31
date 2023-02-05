@@ -1,7 +1,6 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
-# Во всех моделях определен class Meta и определен метод __str__.
 
 
 class Location(models.Model):
@@ -23,11 +22,7 @@ class UserRoles(models.TextChoices):
     ADMIN = "admin", _("admin")
 
 
-class User(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    username = models.CharField(max_length=100, unique=True)
-    password = models.CharField(max_length=100)
+class User(AbstractUser):
     role = models.CharField(choices=UserRoles.choices, max_length=9)
     age = models.PositiveSmallIntegerField()
     location = models.ManyToManyField(Location, null=True, blank=True)
