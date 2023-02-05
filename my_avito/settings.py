@@ -119,7 +119,7 @@ USE_I18N = True
 USE_TZ = True
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "my_media_directory")
-MEDIA_URL = "my_static/"
+MEDIA_URL = "my_media/"
 
 
 REST_FRAMEWORK = {
@@ -137,5 +137,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_FIELD = 'users.User'
+AUTH_USER_MODEL = 'users.User'
 
