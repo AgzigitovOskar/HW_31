@@ -9,19 +9,19 @@ from ads.serializers import SelectionSerializer, SelectionCreateSerializer
 class SelectionViewSet(ModelViewSet):
     queryset = Selection.objects.all()
     default_serializer = SelectionSerializer
-    serializer_class = {
-        'create': SelectionCreateSerializer
+    serializer_classes = {
+        'create': SelectionCreateSerializer,
     }
 
     default_permission = [AllowAny(), ]
-    permission_list = {"create": [IsAuthenticated()],
+    permissions_list = {"create": [IsAuthenticated()],
                        "update": [IsAuthenticated(), IsSelectionOwner()],
                        "partial_update": [IsAuthenticated(), IsSelectionOwner()],
                        "destroy": [IsAuthenticated(), IsSelectionOwner()]
                        }
 
     def get_permissions(self):
-        return self.permission_list.get(self.action, self.default_permission)
+        return self.permissions_list.get(self.action, self.default_permission)
 
-    # def get_serializer_class(self):
-    #     return self.serializer_classes.get(self.action, self.default_serializer)
+    def get_serializer_class(self):
+        return self.serializer_classes.get(self.action, self.default_serializer)
