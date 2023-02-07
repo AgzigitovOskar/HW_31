@@ -2,7 +2,7 @@ from django.urls import path
 from rest_framework.routers import SimpleRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from users.views import *
+from users.views import LocationViewSet, UserListView, UserDetailView, UserCreateView, UserUpdateView, UserDeleteView
 
 router = SimpleRouter()
 router.register('location', LocationViewSet)

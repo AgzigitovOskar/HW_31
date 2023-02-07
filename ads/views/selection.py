@@ -14,11 +14,12 @@ class SelectionViewSet(ModelViewSet):
     }
 
     default_permission = [AllowAny(), ]
-    permissions_list = {"create": [IsAuthenticated()],
-                       "update": [IsAuthenticated(), IsSelectionOwner()],
-                       "partial_update": [IsAuthenticated(), IsSelectionOwner()],
-                       "destroy": [IsAuthenticated(), IsSelectionOwner()]
-                       }
+    permissions_list = {
+        "create": [IsAuthenticated()],
+        "update": [IsAuthenticated(), IsSelectionOwner()],
+        "partial_update": [IsAuthenticated(), IsSelectionOwner()],
+        "destroy": [IsAuthenticated(), IsSelectionOwner()]
+    }
 
     def get_permissions(self):
         return self.permissions_list.get(self.action, self.default_permission)

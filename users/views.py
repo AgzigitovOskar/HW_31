@@ -3,11 +3,12 @@ from rest_framework.generics import RetrieveAPIView, ListAPIView, DestroyAPIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.viewsets import ModelViewSet
 
-from users.serializers import *
+from users.serializers import LocationSerializer, UserSerializer, UserListSerializer, UserCreateSerializer, \
+    UserUpdateSerializer, Location, User
 
 
 class UserPagination(PageNumberPagination):
-    page_size =6
+    page_size = 6
 
 
 class LocationViewSet(ModelViewSet):
