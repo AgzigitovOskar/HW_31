@@ -29,6 +29,8 @@ urlpatterns = [
     path('cat/', include("ads.urls.cat")),
     path('ad/', include("ads.urls.ad")),
     path('user/', include("users.urls")),
+
+
 ]
 router = SimpleRouter()
 router.register('selection', SelectionViewSet)

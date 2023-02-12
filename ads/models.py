@@ -32,7 +32,7 @@ class Ad(models.Model):
 class Selection(models.Model):
     name = models.CharField(max_length=150, )
     owner = models.ForeignKey("users.User", on_delete=models.CASCADE)
-    items = models.ManyToManyField(Ad, )
+    items = models.ManyToManyField(Ad)
 
     class Meta:
         verbose_name = "Подборка"
@@ -40,7 +40,3 @@ class Selection(models.Model):
 
     def __str__(self):
         return self.name
-
-
-
-

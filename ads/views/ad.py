@@ -7,7 +7,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 from ads.permissions import IsAdAuthorOrStaff
-from ads.serializers import *
+from ads.serializers import Ad, AdSerializer, AdDetailSerializer, AdListSerializer
 
 
 class AdPagination(PageNumberPagination):
