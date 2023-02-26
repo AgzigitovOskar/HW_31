@@ -2,6 +2,7 @@ from django.db.models import Count, Q
 from rest_framework.generics import RetrieveAPIView, ListAPIView, DestroyAPIView, CreateAPIView, UpdateAPIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import AllowAny
 
 from users.serializers import LocationSerializer, UserSerializer, UserListSerializer, UserCreateSerializer, \
     UserUpdateSerializer, Location, User
@@ -19,6 +20,7 @@ class LocationViewSet(ModelViewSet):
 class UserDetailView(RetrieveAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
+    permission_classes = [AllowAny, ]
 
 
 class UserListView(ListAPIView):

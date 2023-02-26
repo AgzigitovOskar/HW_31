@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from users.validators import check_birth_date, check_email_address
 
 
 class Location(models.Model):
@@ -22,18 +23,16 @@ class UserRoles(models.TextChoices):
     ADMIN = "admin", _("admin")
 
 
-STAFF_ROLES = [UserRoles.MEMBER, UserRoles.MODERATOR, UserRoles.ADMIN]
+# STAFF_ROLES = [UserRoles.MEMBER, UserRoles.MODERATOR, UserRoles.ADMIN]
 
 
 class User(AbstractUser):
     role = models.CharField(choices=UserRoles.choices, default=UserRoles.MEMBER, max_length=9)
     age = models.PositiveSmallIntegerField(null=True)
     location = models.ManyToManyField(Location)
-
-    # Пользователи с паролями 1 вариант:
-    # def save(self, *args, **kwargs):
-    #     self.set_password(self.password)
-    #     return super().save(*args, **kwargs)
+    birth_date = models.DateField(verbose_name="Дата рождения", validators=[check_birth_date],
+                                  blank=True, null=True)
+    email = models.EmailField(unique=True, blank=True, null=True, validators=[check_email_address])
 
     class Meta:
         verbose_name = "Пользователь"
@@ -42,4 +41,3 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
-

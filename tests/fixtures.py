@@ -10,6 +10,5 @@ def access_token(client, django_user_model):
 
     response = client.post("/user/token/", {"username": username, "password": password},
                            content_type="application/json")
-
-    print(response)
     return response.data["access"]
+    # return response.data.get("access")
